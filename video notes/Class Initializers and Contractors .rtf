@@ -1,0 +1,65 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf200
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 					Class Initializers and Contractors\
+\
+		- Establishing initial state \
+			- classes are created from statement and executable code.\
+			- When an object is created is created it is expected to be in a useful statement \
+\
+\
+		- Mechanisms for establishing initial state \
+			- java provides 3 mechanisms for establishing initial statement \
+				1 - Field initializers \
+				2 - constructors \
+				3 - initializing blocks \
+\
+		- Field initial state  \
+			- A Fields initial statement is established as part of object construction \
+				\'93 fields receive a \'93zero\'94 value by default \
+\
+~~~~~~~~~		\
+					Default Values:				\
+	\
+			 byte     \
+			 short.       float\
+			 int 	      double     char         boolean     Reference types \
+			long \
+			  0 	        0.0       \'91\\u0000\'92        false               null\
+					\
+				We don\'92t have to accept the default values \
+~~~~~~~~~\
+                              \
+				Field Initializers \
+\
+		- Allow you to specify a fields initial value as part of its declaration \
+			- Can be simple assignment \
+			- Can be an equation\
+				EXAMPLE:\
+					\
+					public class Earth \{\
+						long circumferenceInMiles = 24901;\
+						long circumferenceInKilometers =  							Math.round(circumferenceInMiles* 1.6d);\
+					\}\
+\
+\
+    				Constructor \
+ 		- Executable code used during object creation to set the initial state\
+			A CONSTRUCTOR IS NOT A METHOD \
+			- have no return type \
+			- every class has at least one constructor \
+			\
+				Chaining Constructors \
+		\
+		\
+\
+				initialization blocks \
+					\
+					- initialization blacks shared access all constructors \
+					 - executed as if the ode were placed at the start of each 					    constructor \
+					\
+}
