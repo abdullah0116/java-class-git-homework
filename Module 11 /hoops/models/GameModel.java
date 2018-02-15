@@ -11,7 +11,6 @@ public class GameModel {
     private HoopModel hoop;
     private ShotModel shot = new ShotModel();
     private GroundModel ground = new GroundModel();
-    private CollisionEngine collision = new CollisionEngine();
 
     public GameModel(PlayerModel player, BallModel ball, HoopModel hoop) {
         this.player = player;
