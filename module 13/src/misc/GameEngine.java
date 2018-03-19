@@ -5,25 +5,37 @@ import engines.GravityEngine;
 import engines.MovementEngine;
 import engines.WindEngine;
 import models.BallModel;
-
+import java.util.*;
 import models.PlayerModel;
+import engines.Engines;
 
 
 /**
  * Top level engine that drives the changes in the game.
  */
 public class GameEngine {
-    private GravityEngine gravityEngine = new GravityEngine();
-    private MovementEngine movementEngine = new MovementEngine();
-    private CollisionEngine collisionEngine = new CollisionEngine();
-    private WindEngine windEngine = new WindEngine();
+    List<Engines> engines = new ArrayList<>();
+    public GameEngine() {
+      engines.add(new GravityEngine());
+      engines.add(new MovementEngine());
+      engines.add(new CollisionEngine());
+      engines.add(new WindEngine());
+    }
+    // private GravityEngine gravityEngine = new GravityEngine();
+    // private MovementEngine movementEngine = new MovementEngine();
+    // private CollisionEngine collisionEngine = new CollisionEngine();
+    // private WindEngine windEngine = new WindEngine();
 
     public void updateState(GameState state, String input) {
         updateFromUserInput(state, input);
-        gravityEngine.updateState(state);
-        windEngine.updateState(state);
-        movementEngine.updateState(state);
-        collisionEngine.updateState(state);
+
+        for (int i = 0; i < engines.size(); i++) {
+          engines.get(i).updateState(state);
+        }
+        // gravityEngine.updateState(state);
+        // windEngine.updateState(state);
+        // movementEngine.updateState(state);
+        // collisionEngine.updateState(state);
     }
 
     private void updateFromUserInput(GameState state, String input) {

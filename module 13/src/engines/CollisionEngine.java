@@ -2,7 +2,7 @@ package engines;
 
 import misc.GameState;
 
-public class CollisionEngine {
+public class CollisionEngine implements Engines {
     public void updateState(GameState state) {
         if (state.getBall().getY() < 0) {
             state.getBall().setY(0);

@@ -7,7 +7,7 @@ import models.PlayerModel;
 /**
  * Handles updating the state of all objects in the game that move.
  */
-public class MovementEngine {
+public class MovementEngine implements Engines{
     public void updateState(GameState state) {
         BallModel ball = state.getBall();
         PlayerModel player = state.getPlayer();
