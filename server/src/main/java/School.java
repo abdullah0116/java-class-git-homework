@@ -18,7 +18,7 @@ public class School {
     for (int i = 0; i < this.students.size(); i++) {
       Student currentStudent = this.students.get(i);
       if (currentStudent.getId() == id) {
-        students.remove(id - 1);;
+        students.remove(i);
         return currentStudent;
       }
     }
