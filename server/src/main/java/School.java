@@ -30,7 +30,7 @@ public class School {
       Student currentStudent = this.students.get(i);
       if (currentStudent.getId() == id) {
         return currentStudent;
-      }
+      }  
     }
     return null;
   }

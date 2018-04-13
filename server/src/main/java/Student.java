@@ -1,11 +1,14 @@
-public class Student {
+import java.io.*;
+import java.lang.Exception;
+
+public class Student extends Exception {
   private static int nextId = 1;
   private int id;
   private String firstName;
   private String lastName;
   private int grade;
 
-  public Student(String firstName, String lastName, int grade) {
+  public Student(String firstName, String lastName, int grade) {//throws InteruptedException
     this.id = getNextId();
     this.firstName = firstName;
     this.lastName = lastName;
@@ -33,14 +36,14 @@ public class Student {
   }
 
   public void setGrade(int setGrade) {
-    this.grade = setGrade;
+      this.grade = setGrade;
   }
 
-  public String getFirstName() {
-    return this.firstName;
-  }
+    public String getFirstName() {
+      return this.firstName;
+    }
 
-  public String getLastName() {
-    return this.firstName;
+    public String getLastName() {
+      return this.firstName;
+    }
   }
-}

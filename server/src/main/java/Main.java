@@ -1,9 +1,11 @@
 import static spark.Spark.*;
-
+import java.io.*;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.util.List;
-
+import com.google.gson.JsonSyntaxException;
+//import java.lang.illegalstateexception;
+import java.lang.*;
 public class Main {
   private static School generateSchool() {
     School school = new School();
@@ -60,26 +62,38 @@ public class Main {
       Student studentToUpdate = school.getStudentById(id);
 
       UpdateStudentRequest updates = fromJson(request.body(), UpdateStudentRequest.class);
+
       studentToUpdate.setFirstName(updates.firstName);
       studentToUpdate.setLastName(updates.lastName);
-      //studentToUpdate.setGrade(updates.grade);
+
       String json = toJson(studentToUpdate);
 
       return json;
     });
 
-    put("/api/students/:id/grade", (request, response) -> {
+    put("/api/students/:id/grade", (request, response)-> {
       response.type("application/json");
 
       int id = Integer.parseInt(request.params(":id"));
       Student studentToUpdate = school.getStudentById(id);
-      //UpdateGradeRequest updateGrade = school.getStudentById(id);
-      UpdateGradeRequest update = fromJson(request.body(), UpdateGradeRequest.class);
-      studentToUpdate.getId();
-      //updateGrade.setGrade(update.grade);
-      studentToUpdate.setGrade(update.grade);
-      studentToUpdate.getFirstName();
-      studentToUpdate.getLastName();
+      try {
+          UpdateGradeRequest update = fromJson(request.body(), UpdateGradeRequest.class);
+
+          if ( update.grade >= 0 ) {
+              studentToUpdate.setGrade(update.grade);
+          } else {
+              studentToUpdate.setGrade(0);
+            }
+      } catch (JsonSyntaxException ex) {
+        System.out.println("You had an error with your syntax");
+        //System.out.println(ex.printStackTrace());
+        studentToUpdate.setGrade(0);
+      }
+
+        // studentToUpdate.setGrade(update.grade);
+
+
+
 
       String json = toJson(studentToUpdate);
       return json;
@@ -91,10 +105,6 @@ public class Main {
         int id = Integer.parseInt(request.params(":id"));
         Student studentToUpdate = school.removeStudentById(id);
         UpdateStudentRequest updates = fromJson(request.body(), UpdateStudentRequest.class);
-        //studentToUpdate.getId();
-        //studentToUpdate.setFirstName(updates.firstName);
-        //studentToUpdate.setLastName(updates.lastName);
-        //studentToUpdate.setGrade(updates.grade);
         String json = toJson(studentToUpdate);
         return json;
     });
@@ -111,9 +121,22 @@ public class Main {
       response.status(500);
 
       ErrorResponse result = new ErrorResponse(e);
+
       String json = toJson(result);
       response.body(json);
     });
+///api/students/:id/grade
+    // exception("/api/students/:id/grade", (request, response) -> {
+    //   response.type("application/json");
+    //   response.status(500);
+    //   int id = Integer.parseInt(request.params(":id"));
+    //   Student studentToUpdate = school.getStudentById(id);
+    //   UpdateGradeRequest updates = fromJson(request.body(), UpdateGradeRequest.class);
+    //
+    //
+    //   String json = toJson();
+    //   response.body(json);
+    // });
 
     awaitInitialization();
     System.out.println("");
